@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gugy.onlinux.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.gugy.onlinux.entities.UserBean">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="userName" property="userName" jdbcType="VARCHAR"/>
+        <result column="phoneNumber" property="phoneNumber" jdbcType="VARCHAR"/>
+        <result column="idCardNumber" property="idCardNumber" jdbcType="BIGINT"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="createTime" property="createTime" jdbcType="DATE"/>
+        <result column="modifyTime" property="modifyTime" jdbcType="DATE"/>
+    </resultMap>
+
+    <insert id="insert">
+        INSERT INTO user(id, userName, phoneNumber, idCardNumber, address, createTime, modifyTime)
+        VALUES (#{user.id}, #{user.userName}, #{user.phoneNumber}, #{user.idCardNumber}, #{user.address}, #{user.createTime}, #{user.modifyTime} );
+    </insert>
+
+    <select id="findAll" resultType="com.gugy.onlinux.entities.UserBean">
+        select id, userName, phoneNumber, idCardNumber, address, createTime, modifyTime from user
+    </select>
+
+    <update id="update">
+         UPDATE user SET userName=#{user.userName}, phoneNumber=#{user.phoneNumber}, idCardNumber=#{user.idCardNumber}, address=#{user.address}, modifyTime=#{user.modifyTime}
+         WHERE id=#{user.id};
+    </update>
+
+</mapper>
